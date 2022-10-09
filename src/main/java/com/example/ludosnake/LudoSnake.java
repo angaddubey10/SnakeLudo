@@ -14,6 +14,7 @@ public class LudoSnake extends Application {
     Group tileGroup = new Group();
 
     int yLine = 360;
+    int xLine = 40;
     public Pane createContent(){
         Pane root = new Pane();
         root.setPrefSize(400,400);
