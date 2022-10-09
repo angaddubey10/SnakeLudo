@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -13,12 +15,27 @@ public class LudoSnake extends Application {
 
     Group tileGroup = new Group();
 
-    int yLine = 360;
+    public static final int tileSize = 40;
+    int height = 10;
+    int width = 10;
+
+    int yLine = 430;
     int xLine = 40;
     public Pane createContent(){
         Pane root = new Pane();
-        root.setPrefSize(400,400);
+        root.setPrefSize(width*tileSize,height*tileSize+80);
         root.getChildren().addAll(tileGroup);
+
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                Tile tile = new Tile(tileSize,tileSize);
+                tile.setTranslateX(j*tileSize);
+                tile.setTranslateY(i*tileSize);
+                tileGroup.getChildren().addAll(tile);
+            }
+
+        }
+
 
         Button player1Button = new Button("Player One");
         player1Button.setTranslateX(10);
@@ -33,9 +50,15 @@ public class LudoSnake extends Application {
         gameButton.setTranslateY(yLine);
 
 
+         //img = new Image("C:\\Users\\angaddubey\\IdeaProjects\\LudoSnake\\src\\snakeLadderBoardNO.jpg");
+        Image img = new Image("C:\\Users\\angaddubey\\IdeaProjects\\LudoSnake\\src\\snakeLadderBoard.jpg");
+        ImageView boardImage = new ImageView();
+        boardImage.setImage(img);
+        boardImage.setFitHeight(tileSize*height);
+        boardImage.setFitWidth(tileSize*width);
 
 
-        tileGroup.getChildren().addAll(player1Button,player2Button,gameButton);
+        tileGroup.getChildren().addAll(boardImage, player1Button,player2Button,gameButton);
 
         return root;
     }
